@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+<title><%= title %></title>
+</head>
+
+<body>
+
+    <h1>Welcome to MyAmazon, where you buy everything!</h1>
+    <% products.forEach(function(product){ %>
+    <li><%= product.productname %> <%= product.price %> $</li>
+    <% }); %>
+
+</body>
+
+</html>
