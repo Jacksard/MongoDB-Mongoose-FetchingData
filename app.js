@@ -5,9 +5,12 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var Products = require('./models/model')
+var db = 'mongodb://localhost/products';
 
 // Connect the Databade to mongoose
-mongoose.connect('mongodb://localhost/products');
+
+mongoose.connect(db);
 
 // Check mongoose connection
 
@@ -19,13 +22,13 @@ mongoose.connect('mongodb://localhost/products');
 
 // var Schema = mongoose.Schema;
 
-var productSchema = new mongoose.Schema({
-    productname: String,
-    category: String,
-    price: Number
-});
+//var productSchema = new mongoose.Schema({
+//    productname: String,
+//    category: String,
+//    price: Number
+//});
 
-var products = mongoose.model('products', productSchema);
+//var products = mongoose.model('products', productSchema);
 
 
 //initilise the app.js
@@ -51,11 +54,11 @@ app.use(session({
 
 // Routes
 app.get('/', function(req, res){
-    products.find({}, function(err, products){
-        console.log(products);
+    Products.find({}, function(err, results){
+        console.log(results);
          res.render('index', {
         title: "homePage",
-        products: products
+        results: results
         });
      
     });  
